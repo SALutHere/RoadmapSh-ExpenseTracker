@@ -1,0 +1,23 @@
+{
+  "1a075e39-0d6f-4384-8205-07f91cf9fc73": {
+    "ID": "1a075e39-0d6f-4384-8205-07f91cf9fc73",
+    "Date": "2025-06-17T23:43:35.3307301+03:00",
+    "Description": "Expense-1",
+    "Amount": 10,
+    "Category": "Category-1"
+  },
+  "aacbbf30-d37e-47f1-a3cb-8eb871db801a": {
+    "ID": "aacbbf30-d37e-47f1-a3cb-8eb871db801a",
+    "Date": "2025-06-17T23:44:52.3346206+03:00",
+    "Description": "Expense-2",
+    "Amount": 20,
+    "Category": "Category-2"
+  },
+  "b5386149-d844-40f9-bdca-f61b9655b92e": {
+    "ID": "b5386149-d844-40f9-bdca-f61b9655b92e",
+    "Date": "2025-06-17T23:44:48.9408199+03:00",
+    "Description": "Expense-3",
+    "Amount": 30,
+    "Category": "Category-3"
+  }
+}
