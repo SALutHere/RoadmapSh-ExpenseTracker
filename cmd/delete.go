@@ -1,0 +1,27 @@
+package cmd
+
+import (
+	"expense-tracker/internal/expenses"
+	"fmt"
+	"log"
+
+	"github.com/google/uuid"
+	"github.com/spf13/cobra"
+)
+
+var deleteCmd = &cobra.Command{
+	Use:   "delete",
+	Short: "Delete an existing expense",
+	Run: func(cmd *cobra.Command, args []string) {
+		if err := expenses.DeleteExpense(uuid.MustParse(id)); err != nil {
+			log.Fatalf("error when deleting a new expense")
+		}
+		fmt.Printf("Expense was deleted successfully! ID: %s", id)
+	},
+}
+
+func init() {
+	deleteCmd.Flags().StringVarP(&id, "id", "i", "", "Expense ID")
+
+	deleteCmd.MarkFlagRequired("id")
+}

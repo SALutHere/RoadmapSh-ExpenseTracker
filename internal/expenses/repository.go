@@ -89,3 +89,23 @@ func UpdateExpense(expense Expense) error {
 
 	return nil
 }
+
+// Deletes existing expense from the storage file by its ID
+func DeleteExpense(id uuid.UUID) error {
+	expenses, err := GetExpensesFromFile()
+	if err != nil {
+		return err
+	}
+
+	if _, ok := expenses[id]; ok {
+		delete(expenses, id)
+	} else {
+		return fmt.Errorf("expense with ID %s not found", id.String())
+	}
+
+	if err := WriteExpensesToFile(expenses); err != nil {
+		return fmt.Errorf("error adding an expense to file: %v", err)
+	}
+
+	return nil
+}

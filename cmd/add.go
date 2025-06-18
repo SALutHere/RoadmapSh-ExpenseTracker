@@ -16,7 +16,7 @@ var addCmd = &cobra.Command{
 		if err := expenses.AddExpense(expense); err != nil {
 			log.Fatalf("error when adding a new expense")
 		}
-		fmt.Printf("A new expense was added successfully! ID: %v", expense.ID)
+		fmt.Printf("A new expense was added successfully! ID: %s", expense.ID.String())
 	},
 }
 
