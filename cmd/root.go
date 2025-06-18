@@ -14,7 +14,7 @@ var category string
 var rootCmd = &cobra.Command{
 	Use:   "expense-tracker",
 	Short: "Expense tracker",
-	Long:  "Program to track expenses. Supports adding and viewing expenses",
+	Long:  "Program to track expenses. Supports listing, adding, updating and deleting expenses",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Welcome to expense-tracker!")
 	},
