@@ -8,16 +8,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var description string
-var amount float64
-var category string
-
 var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new expense",
 	Run: func(cmd *cobra.Command, args []string) {
 		expense := expenses.NewExpense(description, amount, category)
-		if err := expenses.WriteToFile(expense); err != nil {
+		if err := expenses.AddExpense(expense); err != nil {
 			log.Fatalf("error when adding a new expense")
 		}
 		fmt.Printf("A new expense was added successfully! ID: %v", expense.ID)

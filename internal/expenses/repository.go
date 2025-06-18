@@ -27,25 +27,64 @@ func GetExpensesFromFile() (map[uuid.UUID]Expense, error) {
 	return expenses, nil
 }
 
-// Saves given expense to the storage file
-func WriteToFile(expense Expense) error {
-	expenses, err := GetExpensesFromFile()
-	if err != nil {
-		return err
-	}
-
+// Writes given expenses map to the storage file
+func WriteExpensesToFile(expenses map[uuid.UUID]Expense) error {
 	expensesFile, err := os.OpenFile(expensesFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		return fmt.Errorf("error opening expenses file for writing: %v", err)
 	}
 	defer expensesFile.Close()
 
-	expenses[expense.ID] = expense
-
 	encoder := json.NewEncoder(expensesFile)
 	encoder.SetIndent("", "  ")
 	if err := encoder.Encode(&expenses); err != nil {
 		return fmt.Errorf("error encoding expenses file: %v", err)
+	}
+
+	return nil
+}
+
+// Saves given expense to the storage file
+func AddExpense(expense Expense) error {
+	expenses, err := GetExpensesFromFile()
+	if err != nil {
+		return err
+	}
+
+	expenses[expense.ID] = expense
+
+	if err := WriteExpensesToFile(expenses); err != nil {
+		return fmt.Errorf("error adding an expense to file: %v", err)
+	}
+
+	return nil
+}
+
+// Updates existing expense in the storage file
+func UpdateExpense(expense Expense) error {
+	expenses, err := GetExpensesFromFile()
+	if err != nil {
+		return err
+	}
+
+	if exp, ok := expenses[expense.ID]; ok {
+		if expense.Description != "" {
+			exp.Description = expense.Description
+		}
+		if expense.Amount != 0 {
+			exp.Amount = expense.Amount
+		}
+		if expense.Category != "" {
+			exp.Category = expense.Category
+		}
+
+		expenses[expense.ID] = exp
+	} else {
+		return fmt.Errorf("expense with ID %s not found", expense.ID)
+	}
+
+	if err := WriteExpensesToFile(expenses); err != nil {
+		return fmt.Errorf("error adding an expense to file: %v", err)
 	}
 
 	return nil
