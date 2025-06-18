@@ -20,7 +20,7 @@ func GetExpensesTable(expenses map[uuid.UUID]Expense) string {
 			expense.Description,
 			expense.Amount,
 			expense.Category,
-			expense.Date.Format("2006-01-02 15:04:05"),
+			expense.Date.Format("02-01-2006 15:04:05"),
 		)
 	}
 	writer.Flush()
