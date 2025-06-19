@@ -9,7 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "expense-tracker",
 	Short: "Expense tracker",
-	Long:  "Program expenses management",
+	Long:  "Program for expenses management",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Welcome to expense-tracker!")
 	},
@@ -25,4 +25,5 @@ func init() {
 	rootCmd.AddCommand(updateCmd)
 	rootCmd.AddCommand(deleteCmd)
 	rootCmd.AddCommand(summaryCmd)
+	rootCmd.AddCommand(clearCmd)
 }
