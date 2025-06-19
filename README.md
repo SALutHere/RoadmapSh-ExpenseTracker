@@ -19,7 +19,7 @@ go build
 
 Getting started:
 ```
-expense-tracker.exe --help
+./expense-tracker --help
 ```
 
 ```
