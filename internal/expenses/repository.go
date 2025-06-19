@@ -3,6 +3,7 @@ package expenses
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/google/uuid"
@@ -46,6 +47,10 @@ func WriteExpensesToFile(expenses map[uuid.UUID]Expense) error {
 
 // Saves given expense to the storage file
 func AddExpense(expense Expense) error {
+	if expense.Amount < 0 {
+		log.Fatal("negative amount is not valid")
+	}
+
 	expenses, err := GetExpensesFromFile()
 	if err != nil {
 		return err
@@ -62,6 +67,10 @@ func AddExpense(expense Expense) error {
 
 // Updates existing expense in the storage file
 func UpdateExpense(expense Expense) error {
+	if expense.Amount < 0 {
+		log.Fatal("negative amount is not valid")
+	}
+
 	expenses, err := GetExpensesFromFile()
 	if err != nil {
 		return err

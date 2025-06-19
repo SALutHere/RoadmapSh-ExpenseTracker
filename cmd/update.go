@@ -20,7 +20,7 @@ var updateCmd = &cobra.Command{
 			Category:    category,
 		}
 		if err := expenses.UpdateExpense(expense); err != nil {
-			log.Fatalf("error when updating an expense")
+			log.Fatalf("error when updating an expense: %v", err)
 		}
 		fmt.Printf("An expense was updated successfully! ID: %v", expense.ID)
 	},

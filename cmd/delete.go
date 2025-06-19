@@ -14,7 +14,7 @@ var deleteCmd = &cobra.Command{
 	Short: "Delete an existing expense",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := expenses.DeleteExpense(uuid.MustParse(id)); err != nil {
-			log.Fatalf("error when deleting a new expense")
+			log.Fatalf("error when deleting a new expense: %v", err)
 		}
 		fmt.Printf("Expense was deleted successfully! ID: %s", id)
 	},
