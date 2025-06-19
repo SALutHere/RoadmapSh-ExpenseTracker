@@ -2,6 +2,7 @@ package expenses
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -14,9 +15,18 @@ const expensesFilePath = "storage/expenses.json"
 
 // Returns the current expenses map taken from the storage file
 func GetExpensesFromFile() (map[uuid.UUID]Expense, error) {
-	expensesFile, err := os.Open(expensesFilePath)
-	if err != nil {
-		return nil, fmt.Errorf("error opening expenses file for reading: %v", err)
+	var expensesFile *os.File
+
+	if _, err := os.Stat(expensesFilePath); errors.Is(err, os.ErrNotExist) {
+		expensesFile, err = os.Create(expensesFilePath)
+		if err != nil {
+			return nil, fmt.Errorf("error creating expenses file: %v", err)
+		}
+	} else {
+		expensesFile, err = os.Open(expensesFilePath)
+		if err != nil {
+			return nil, fmt.Errorf("error opening expenses file for reading: %v", err)
+		}
 	}
 	defer expensesFile.Close()
 
