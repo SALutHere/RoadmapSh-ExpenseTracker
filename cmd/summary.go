@@ -19,7 +19,7 @@ var summaryCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		exps, err := expenses.GetExpensesFromFile()
 		if err != nil {
-			log.Fatalf("error when getting sum of expenses: %v", err)
+			log.Fatalf("error when getting sum of expenses: %v\n", err)
 		}
 
 		if summaryDay != 0 {
@@ -37,7 +37,7 @@ var summaryCmd = &cobra.Command{
 
 		if len(exps) != 0 {
 			total := expenses.GetTotalExpenses(exps)
-			fmt.Printf("Total expenses: $%.2f", total)
+			fmt.Printf("Total expenses: $%.2f\n", total)
 		} else {
 			fmt.Println("Suitable results were not found")
 		}

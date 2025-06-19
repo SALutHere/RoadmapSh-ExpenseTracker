@@ -18,9 +18,9 @@ var addCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		expense := expenses.NewExpense(addDescription, addAmount, addCategory)
 		if err := expenses.AddExpense(expense); err != nil {
-			log.Fatalf("error when adding a new expense: %v", err)
+			log.Fatalf("error when adding a new expense: %v\n", err)
 		}
-		fmt.Printf("A new expense was added successfully! ID: %s", expense.ID.String())
+		fmt.Printf("A new expense was added successfully! ID: %s\n", expense.ID.String())
 	},
 }
 

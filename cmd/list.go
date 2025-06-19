@@ -14,7 +14,7 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		exps, err := expenses.GetExpensesFromFile()
 		if err != nil {
-			log.Fatalf("error when listing expenses: %v", err)
+			log.Fatalf("error when listing expenses: %v\n", err)
 		}
 		output := expenses.GetExpensesTable(exps)
 		fmt.Println(output)
