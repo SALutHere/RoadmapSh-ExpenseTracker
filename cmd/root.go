@@ -6,11 +6,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var id string
-var description string
-var amount float64
-var category string
-
 var rootCmd = &cobra.Command{
 	Use:   "expense-tracker",
 	Short: "Expense tracker",
@@ -29,4 +24,5 @@ func init() {
 	rootCmd.AddCommand(addCmd)
 	rootCmd.AddCommand(updateCmd)
 	rootCmd.AddCommand(deleteCmd)
+	rootCmd.AddCommand(summaryCmd)
 }
